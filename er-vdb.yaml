@@ -50,7 +50,7 @@ spec:
 
         --############ Schemas ############
         CREATE SCHEMA erdemo SERVER "er";
-        CREATE SCHEMA process SERVER "jbm";
+        CREATE SCHEMA process SERVER "jbpm";
         CREATE SCHEMA datawarehouse SERVER "dw";
 
         CREATE VIRTUAL SCHEMA EmergencyResponse;
