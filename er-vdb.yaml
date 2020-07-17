@@ -51,7 +51,7 @@ spec:
 
         CREATE SERVER "er" FOREIGN DATA WRAPPER postgresql;
 
-        --#######CREATE SERVER "jbpm" FOREIGN DATA WRAPPER postgresql;
+        CREATE SERVER "jbpm" FOREIGN DATA WRAPPER postgresql;
 
         CREATE SERVER "dw" FOREIGN DATA WRAPPER postgresql;
 
@@ -60,7 +60,7 @@ spec:
 
         CREATE SCHEMA erdemo SERVER "er";
 
-        --####### CREATE SCHEMA process SERVER "jbpm";
+        CREATE SCHEMA process SERVER "jbpm";
 
         CREATE SCHEMA datawarehouse SERVER "dw";
 
@@ -80,11 +80,14 @@ spec:
         SET SCHEMA  erdemo;
 
         IMPORT FOREIGN SCHEMA public FROM SERVER er INTO erdemo OPTIONS (
-                "importer.useFullSchemaName" 'false');
+                "importer.useFullSchemaName" 'false', "importer.tableTypes" 'TABLE');
 
         --### is there a way to just import tables, don't want to import ###
         --##everything from jbpm ####
-
+        
+        SET SCHEMA process;
+        IMPORT FOREIGN SCHEMA public FROM SERVER jbpm INTO process OPTIONS (
+                "importer.useFullSchemaName" 'false', "importer.tableTypes" 'TABLE');
 
         --############ Schema:EmergencyResponse ############           
 
