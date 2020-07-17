@@ -86,11 +86,11 @@ spec:
         --##everything from jbpm ####
         
         SET SCHEMA process;
-        IMPORT FOREIGN SCHEMA public FROM SERVER jbpm  INTO process
-               LIMIT TO (NodeInstanceLog, CaseFileDataLog, CaseRoleAssignmentLog, ProcessInstanceLog, VariableInstanceLog);
+          --### IMPORT FOREIGN SCHEMA public FROM SERVER jbpm  INTO process
+             --###     LIMIT TO (NodeInstanceLog, CaseFileDataLog, CaseRoleAssignmentLog, ProcessInstanceLog, VariableInstanceLog);
                
-        --## IMPORT FOREIGN SCHEMA public FROM SERVER jbpm INTO process OPTIONS (
-        --##        "importer.useFullSchemaName" 'false', "importer.tableTypes" 'TABLE');
+        IMPORT FOREIGN SCHEMA public FROM SERVER jbpm INTO process OPTIONS (
+              "importer.useFullSchemaName" 'false', "importer.tableTypes" 'TABLE');
 
         --############ Schema:EmergencyResponse ############           
 
