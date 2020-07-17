@@ -38,26 +38,64 @@ spec:
     source:
       ddl: |
         CREATE DATABASE EmergencyResponse OPTIONS (ANNOTATION 'The EmergencyResponse VDB');
+
         USE DATABASE EmergencyResponse;
 
+
         --############ translators ############
+
         CREATE FOREIGN DATA WRAPPER postgresql;
 
+
         --############ Servers ############
+
         CREATE SERVER "er" FOREIGN DATA WRAPPER postgresql;
-        CREATE SERVER "jbpm" FOREIGN DATA WRAPPER postgresql;
+
+        --#######CREATE SERVER "jbpm" FOREIGN DATA WRAPPER postgresql;
+
         CREATE SERVER "dw" FOREIGN DATA WRAPPER postgresql;
 
+
         --############ Schemas ############
+
         CREATE SCHEMA erdemo SERVER "er";
-        CREATE SCHEMA process SERVER "jbpm";
+
+        --####### CREATE SCHEMA process SERVER "jbpm";
+
         CREATE SCHEMA datawarehouse SERVER "dw";
+
 
         CREATE VIRTUAL SCHEMA EmergencyResponse;
 
-        --############ Schema:erdemo ############
-        SET SCHEMA erdemo;
 
-        IMPORT FROM SERVER "er" INTO erdemo OPTIONS (
-                "importer.useFullSchemaName" 'false',
-                "importer.tableTypes" 'TABLE,VIEW');
+        --############ Schema:datawarehouse ############  
+
+        SET SCHEMA  datawarehouse;
+
+        IMPORT FOREIGN SCHEMA public FROM SERVER dw INTO datawarehouse OPTIONS (
+                "importer.useFullSchemaName" 'false');
+
+        --############ Schema:erdemo ############  
+
+        SET SCHEMA  erdemo;
+
+        IMPORT FOREIGN SCHEMA public FROM SERVER er INTO erdemo OPTIONS (
+                "importer.useFullSchemaName" 'false');
+
+        --### is there a way to just import tables, don't want to import ###
+        --##everything from jbpm ####
+
+
+        --############ Schema:EmergencyResponse ############           
+
+        SET SCHEMA EmergencyResponse;
+
+        -- ####TEMP  
+
+        CREATE VIEW mission (
+          id, status, incidentid, processinstanceid, responderid, responderfullname, responderhasmedicalkit, numberrescued, responderdistancepickup, responderdistancedropoff, responderdistancetotal, responsetimesecondspickup, responsetimesecondsdropoff, responsetimesecondstotal, PRIMARY KEY(id)
+         ) AS 
+          SELECT 
+          t1.id, t1.status, t1.incidentid, t1.processinstanceid, t1.responderid, t1.responderfullname, t1.responderhasmedicalkit, t1.numberrescued, t1.responderdistancepickup, t1.responderdistancedropoff, t1.responderdistancetotal, t1.responsetimesecondspickup, t1.responsetimesecondsdropoff, t1.responsetimesecondstotal
+         FROM 
+         datawarehouse.missionreport t1
