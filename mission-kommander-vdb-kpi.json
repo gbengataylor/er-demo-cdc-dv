@@ -1,8 +1,8 @@
     {
       "__inputs": [
         {
-          "name": "DS_DW_POSTGRESQL",
-          "label": "dw_postgresql",
+          "name": "DS_DW_VDB",
+          "label": "dw_vdb",
           "description": "",
           "type": "datasource",
           "pluginId": "postgres",
@@ -68,7 +68,7 @@
       "panels": [
         {
           "content": "\n# Mission Commander KPIs\n\n\n\n\n",
-          "datasource": "DS_DW_POSTGRESQL",
+          "datasource": "DS_DW_VDB",
           "gridPos": {
             "h": 2,
             "w": 17,
@@ -86,7 +86,7 @@
               "group": [],
               "metricColumn": "none",
               "rawQuery": true,
-              "rawSql": "select sum(numberrescued) from missionreport",
+              "rawSql": "select sum(numberrescued) from mission",
               "refId": "A",
               "select": [
                 [
@@ -98,7 +98,7 @@
                   }
                 ]
               ],
-              "table": "missionreport",
+              "table": "mission",
               "timeColumn": "numberrescued",
               "timeColumnType": "int4",
               "where": [
@@ -116,7 +116,7 @@
           "type": "text"
         },
         {
-          "datasource": "DS_DW_POSTGRESQL",
+          "datasource": "DS_DW_VDB",
           "gridPos": {
             "h": 8,
             "w": 8,
@@ -181,7 +181,7 @@
               "group": [],
               "metricColumn": "none",
               "rawQuery": true,
-              "rawSql": "select now() as time, sum(numberrescued) from missionreport",
+              "rawSql": "select now() as time1, sum(numberrescued) from mission",
               "refId": "A",
               "select": [
                 [
@@ -193,7 +193,7 @@
                   }
                 ]
               ],
-              "table": "missionreport",
+              "table": "mission",
               "timeColumn": "numberrescued",
               "timeColumnType": "int4",
               "where": [
@@ -211,7 +211,7 @@
           "type": "gauge"
         },
         {
-          "datasource": "DS_DW_POSTGRESQL",
+          "datasource": "DS_DW_VDB",
           "gridPos": {
             "h": 8,
             "w": 8,
@@ -255,7 +255,7 @@
               "group": [],
               "metricColumn": "none",
               "rawQuery": true,
-              "rawSql": "select now() as time, sum(numberrescued), responderfullname from missionreport group by responderfullname order by sum desc limit 5\n",
+              "rawSql": "select now() as time1, sum(numberrescued), responderfullname from mission group by responderfullname order by sum desc limit 5\n",
               "refId": "A",
               "select": [
                 [
@@ -267,7 +267,7 @@
                   }
                 ]
               ],
-              "table": "missionreport",
+              "table": "mission",
               "timeColumn": "numberrescued",
               "timeColumnType": "int4",
               "where": [
@@ -286,7 +286,7 @@
         },
         {
           "content": "\n\n\n\n\n",
-          "datasource": "DS_DW_POSTGRESQL",
+          "datasource": "DS_DW_VDB",
           "gridPos": {
             "h": 1,
             "w": 17,
@@ -304,7 +304,7 @@
               "group": [],
               "metricColumn": "none",
               "rawQuery": true,
-              "rawSql": "select (responderdistancetotal / responsetimesecondstotal * 3.6) as response_velocity_km_hr, responderfullname, incidentId, processinstanceid from MissionReport order by response_velocity_km_hr desc limit 10;",
+              "rawSql": "select (responderdistancetotal / responsetimesecondstotal * 3.6) as response_velocity_km_hr, responderfullname, incidentId, processinstanceid from mission order by response_velocity_km_hr desc limit 10;",
               "refId": "A",
               "select": [
                 [
@@ -316,7 +316,7 @@
                   }
                 ]
               ],
-              "table": "missionreport",
+              "table": "mission",
               "timeColumn": "numberrescued",
               "timeColumnType": "int4",
               "where": [
@@ -335,7 +335,7 @@
         },
         {
           "columns": [],
-          "datasource": "DS_DW_POSTGRESQL",
+          "datasource": "DS_DW_VDB",
           "fontSize": "100%",
           "gridPos": {
             "h": 8,
@@ -356,7 +356,7 @@
           },
           "styles": [
             {
-              "alias": "Time",
+              "alias": "Time1",
               "dateFormat": "YYYY-MM-DD HH:mm:ss",
               "pattern": "Time",
               "type": "date"
@@ -382,7 +382,7 @@
               "group": [],
               "metricColumn": "none",
               "rawQuery": true,
-              "rawSql": "select (responderdistancetotal / responsetimesecondstotal * 3.6) as response_velocity_km_hr, responderfullname, incidentId, processinstanceid from MissionReport order by response_velocity_km_hr desc limit 10;",
+              "rawSql": "select (responderdistancetotal / responsetimesecondstotal * 3.6) as response_velocity_km_hr, responderfullname, incidentId, processinstanceid from mission order by response_velocity_km_hr desc limit 10;",
               "refId": "A",
               "select": [
                 [
@@ -394,7 +394,7 @@
                   }
                 ]
               ],
-              "table": "missionreport",
+              "table": "mission",
               "timeColumn": "numberrescued",
               "timeColumnType": "int4",
               "where": [
