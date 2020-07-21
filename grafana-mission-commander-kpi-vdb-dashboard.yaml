@@ -7,567 +7,459 @@ metadata:
 spec:
   json: |
     {
-  "annotations": {
-    "list": [
-      {
-        "builtIn": 1,
-        "datasource": "-- Grafana --",
-        "enable": true,
-        "hide": true,
-        "iconColor": "rgba(0, 211, 255, 1)",
-        "name": "Annotations & Alerts",
-        "type": "dashboard"
-      }
-    ]
-  },
-  "editable": true,
-  "gnetId": null,
-  "graphTooltip": 0,
-  "id": 1,
-  "links": [],
-  "panels": [
-    {
-      "content": "\n# Mission Commander VDB KPIs\n\n\n\n\n",
-      "datasource": "DS_DW_VDB",
-      "fieldConfig": {
-        "defaults": {
-          "custom": {}
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 2,
-        "w": 17,
-        "x": 0,
-        "y": 0
-      },
-      "id": 2,
-      "links": [],
-      "mode": "markdown",
-      "options": {
-        "content": "\n# Mission Commander VDB KPIs\n\n\n\n\n",
-        "mode": "markdown"
-      },
-      "pluginVersion": "7.1.0",
-      "targets": [
+      "__inputs": [
         {
-          "format": "table",
-          "group": [],
-          "metricColumn": "none",
-          "rawQuery": true,
-          "rawSql": "select sum(numberrescued) from mission",
-          "refId": "A",
-          "select": [
-            [
-              {
-                "params": [
-                  "numberrescued"
-                ],
-                "type": "column"
-              }
-            ]
-          ],
-          "table": "mission",
-          "timeColumn": "numberrescued",
-          "timeColumnType": "int4",
-          "where": [
-            {
-              "name": "$__unixEpochFilter",
-              "params": [],
-              "type": "macro"
-            }
-          ]
+          "name": "DS_DW_VDB",
+          "label": "dw_vdb",
+          "description": "",
+          "type": "datasource",
+          "pluginId": "postgres",
+          "pluginName": "PostgreSQL"
         }
       ],
-      "timeFrom": null,
-      "timeShift": null,
-      "title": "",
-      "type": "text"
-    },
-    {
-      "datasource": "DS_DW_VDB",
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "thresholds"
-          },
-          "custom": {},
-          "mappings": [],
-          "max": 1000,
-          "min": 0,
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "index": 0,
-                "value": null
-              },
-              {
-                "color": "dark-red",
-                "index": 1,
-                "value": 0
-              },
-              {
-                "color": "red",
-                "index": 2,
-                "value": 50
-              },
-              {
-                "color": "orange",
-                "index": 3,
-                "value": 100
-              },
-              {
-                "color": "semi-dark-green",
-                "index": 4,
-                "value": 200
-              },
-              {
-                "color": "blue",
-                "index": 5,
-                "value": 300
-              }
-            ]
-          }
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 8,
-        "w": 8,
-        "x": 0,
-        "y": 2
-      },
-      "id": 4,
-      "links": [],
-      "options": {
-        "orientation": "auto",
-        "reduceOptions": {
-          "calcs": [
-            "mean"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "showThresholdLabels": false,
-        "showThresholdMarkers": true
-      },
-      "pluginVersion": "7.1.0",
-      "targets": [
+      "__requires": [
         {
-          "format": "table",
-          "group": [],
-          "metricColumn": "none",
-          "rawQuery": true,
-          "rawSql": "select times, numbersrescued from totalrescued;",
-          "refId": "A",
-          "select": [
-            [
-              {
-                "params": [
-                  "numbersrescued"
-                ],
-                "type": "column"
-              }
-            ]
-          ],
-          "table": "totalrescued",
-          "timeColumn": "numbersrescued",
-          "timeColumnType": "int4",
-          "where": [
-            {
-              "name": "$__unixEpochFilter",
-              "params": [],
-              "type": "macro"
-            }
-          ]
+          "type": "panel",
+          "id": "bargauge",
+          "name": "Bar Gauge",
+          "version": ""
+        },
+        {
+          "type": "panel",
+          "id": "gauge",
+          "name": "Gauge",
+          "version": ""
+        },
+        {
+          "type": "grafana",
+          "id": "grafana",
+          "name": "Grafana",
+          "version": "6.2.4"
+        },
+        {
+          "type": "datasource",
+          "id": "postgres",
+          "name": "PostgreSQL",
+          "version": "1.0.0"
+        },
+        {
+          "type": "panel",
+          "id": "table",
+          "name": "Table",
+          "version": ""
+        },
+        {
+          "type": "panel",
+          "id": "text",
+          "name": "Text",
+          "version": ""
         }
       ],
-      "timeFrom": null,
-      "timeShift": null,
-      "title": "Total Rescued ",
-      "type": "gauge"
-    },
-    {
-      "datasource": "DS_DW_VDB",
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "thresholds"
-          },
-          "custom": {},
-          "mappings": [],
-          "max": 100,
-          "min": 0,
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "index": 0,
-                "value": null
-              },
-              {
-                "color": "red",
-                "index": 1,
-                "value": 80
-              }
-            ]
-          }
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 8,
-        "w": 9,
-        "x": 8,
-        "y": 2
-      },
-      "id": 9,
-      "links": [],
-      "options": {
-        "displayMode": "lcd",
-        "orientation": "horizontal",
-        "reduceOptions": {
-          "calcs": [
-            "mean"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "showUnfilled": true
-      },
-      "pluginVersion": "7.1.0",
-      "targets": [
-        {
-          "format": "time_series",
-          "group": [],
-          "metricColumn": "none",
-          "rawQuery": true,
-          "rawSql": "select times as \"time\", totalrescued, responder from topresponders;\n",
-          "refId": "A",
-          "select": [
-            [
-              {
-                "params": [
-                  "totalrescued"
-                ],
-                "type": "column"
-              }
-            ]
-          ],
-          "table": "topresponders",
-          "timeColumn": "totalrescued",
-          "timeColumnType": "int4",
-          "where": [
-            {
-              "name": "$__unixEpochFilter",
-              "params": [],
-              "type": "macro"
-            }
-          ]
-        }
-      ],
-      "timeFrom": null,
-      "timeShift": null,
-      "title": "Top Responders (New)",
-      "type": "bargauge"
-    },
-    {
-      "content": "\n\n\n\n\n",
-      "datasource": "DS_DW_VDB",
-      "fieldConfig": {
-        "defaults": {
-          "custom": {}
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 1,
-        "w": 17,
-        "x": 0,
-        "y": 10
-      },
-      "id": 3,
-      "links": [],
-      "mode": "markdown",
-      "options": {
-        "content": "\n\n\n\n\n",
-        "mode": "markdown"
-      },
-      "pluginVersion": "7.1.0",
-      "targets": [
-        {
-          "format": "table",
-          "group": [],
-          "metricColumn": "none",
-          "rawQuery": true,
-          "rawSql": "select (responderdistancetotal / responsetimesecondstotal * 3.6) as response_velocity_km_hr, responderfullname, incidentId, processinstanceid from mission order by response_velocity_km_hr desc limit 10;",
-          "refId": "A",
-          "select": [
-            [
-              {
-                "params": [
-                  "numberrescued"
-                ],
-                "type": "column"
-              }
-            ]
-          ],
-          "table": "mission",
-          "timeColumn": "numberrescued",
-          "timeColumnType": "int4",
-          "where": [
-            {
-              "name": "$__unixEpochFilter",
-              "params": [],
-              "type": "macro"
-            }
-          ]
-        }
-      ],
-      "timeFrom": null,
-      "timeShift": null,
-      "title": "",
-      "type": "text"
-    },
-    {
-      "columns": [],
-      "datasource": "DS_DW_VDB",
-      "fieldConfig": {
-        "defaults": {
-          "custom": {}
-        },
-        "overrides": []
-      },
-      "fontSize": "100%",
-      "gridPos": {
-        "h": 8,
-        "w": 17,
-        "x": 0,
-        "y": 11
-      },
-      "id": 6,
-      "links": [],
-      "pageSize": null,
-      "pluginVersion": "6.2.4",
-      "scroll": true,
-      "showHeader": true,
-      "sort": {
-        "col": null,
-        "desc": false
-      },
-      "styles": [
-        {
-          "alias": "Time",
-          "align": "auto",
-          "dateFormat": "YYYY-MM-DD HH:mm:ss",
-          "pattern": "Time",
-          "type": "date"
-        },
-        {
-          "alias": "",
-          "align": "auto",
-          "colorMode": null,
-          "colors": [
-            "rgba(245, 54, 54, 0.9)",
-            "rgba(237, 129, 40, 0.89)",
-            "rgba(50, 172, 45, 0.97)"
-          ],
-          "decimals": 2,
-          "pattern": "/.*/",
-          "thresholds": [],
-          "type": "number",
-          "unit": "short"
-        }
-      ],
-      "targets": [
-        {
-          "format": "table",
-          "group": [],
-          "metricColumn": "none",
-          "rawQuery": true,
-          "rawSql": "select responder, responseVelocityKmPerHr, incidentId, processInstanceId from fastesttravelvelocities;",
-          "refId": "A",
-          "select": [
-            [
-              {
-                "params": [
-                  "totalrescued"
-                ],
-                "type": "column"
-              }
-            ]
-          ],
-          "table": "fastesttravelvelocities",
-          "timeColumn": "totalrescued",
-          "timeColumnType": "int4",
-          "where": [
-            {
-              "name": "$__unixEpochFilter",
-              "params": [],
-              "type": "macro"
-            }
-          ]
-        }
-      ],
-      "timeFrom": null,
-      "timeShift": null,
-      "title": "Fastest Travel Velocities",
-      "transform": "table",
-      "transformations": [
-        {
-          "id": "organize",
-          "options": {
-            "excludeByName": {},
-            "indexByName": {},
-            "renameByName": {
-              "incidentId": "Incident ID",
-              "processInstanceId": "Process Instance ID",
-              "responder": "Responder",
-              "responseVelocityKmPerHr": "Response Velocity Km/Hr"
-            }
-          }
-        }
-      ],
-      "type": "table-old"
-    },
-    {
-      "datasource": "DS_DW_VDB",
-      "fieldConfig": {
-        "defaults": {
-          "custom": {
-            "align": null
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          }
-        },
-        "overrides": [
+      "annotations": {
+        "list": [
           {
-            "matcher": {
-              "id": "byName",
-              "options": "totalrescued"
-            },
-            "properties": [
-              {
-                "id": "custom.width",
-                "value": 132
-              }
-            ]
+            "builtIn": 1,
+            "datasource": "-- Grafana --",
+            "enable": true,
+            "hide": true,
+            "iconColor": "rgba(0, 211, 255, 1)",
+            "name": "Annotations & Alerts",
+            "type": "dashboard"
           }
         ]
       },
-      "gridPos": {
-        "h": 8,
-        "w": 9,
-        "x": 0,
-        "y": 19
-      },
-      "id": 8,
-      "options": {
-        "showHeader": true,
-        "sortBy": []
-      },
-      "pluginVersion": "7.1.0",
-      "targets": [
+      "editable": true,
+      "gnetId": null,
+      "graphTooltip": 0,
+      "id": null,
+      "links": [],
+      "panels": [
         {
-          "format": "table",
-          "group": [],
-          "metricColumn": "none",
-          "rawQuery": true,
-          "rawSql": "select   responder, totalrescued  from topresponders;",
-          "refId": "A",
-          "select": [
-            [
-              {
-                "params": [
-                  "value"
-                ],
-                "type": "column"
-              }
-            ]
-          ],
-          "timeColumn": "time",
-          "where": [
+          "content": "\n# Mission Commander VDB KPIs\n\n\n\n\n",
+          "datasource": "DS_DW_VDB",
+          "gridPos": {
+            "h": 2,
+            "w": 17,
+            "x": 0,
+            "y": 0
+          },
+          "id": 2,
+          "links": [],
+          "mode": "markdown",
+          "options": {},
+          "pluginVersion": "6.2.4",
+          "targets": [
             {
-              "name": "$__timeFilter",
-              "params": [],
-              "type": "macro"
+              "format": "table",
+              "group": [],
+              "metricColumn": "none",
+              "rawQuery": true,
+              "rawSql": "select sum(numberrescued) from mission",
+              "refId": "A",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "numberrescued"
+                    ],
+                    "type": "column"
+                  }
+                ]
+              ],
+              "table": "mission",
+              "timeColumn": "numberrescued",
+              "timeColumnType": "int4",
+              "where": [
+                {
+                  "name": "$__unixEpochFilter",
+                  "params": [],
+                  "type": "macro"
+                }
+              ]
             }
-          ]
-        }
-      ],
-      "timeFrom": null,
-      "timeShift": null,
-      "title": "Top Responders",
-      "transformations": [
+          ],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "",
+          "type": "text"
+        },
         {
-          "id": "organize",
+          "datasource": "DS_DW_VDB",
+          "gridPos": {
+            "h": 8,
+            "w": 8,
+            "x": 0,
+            "y": 2
+          },
+          "id": 4,
+          "links": [],
           "options": {
-            "excludeByName": {},
-            "indexByName": {},
-            "renameByName": {
-              "responder": "Responder",
-              "totalrescued": "Total Rescued"
+            "fieldOptions": {
+              "calcs": [
+                "mean"
+              ],
+              "defaults": {
+                "max": 1000,
+                "min": 0
+              },
+              "mappings": [],
+              "override": {},
+              "thresholds": [
+                {
+                  "color": "green",
+                  "index": 0,
+                  "value": null
+                },
+                {
+                  "color": "dark-red",
+                  "index": 1,
+                  "value": 0
+                },
+                {
+                  "color": "red",
+                  "index": 2,
+                  "value": 50
+                },
+                {
+                  "color": "orange",
+                  "index": 3,
+                  "value": 100
+                },
+                {
+                  "color": "semi-dark-green",
+                  "index": 4,
+                  "value": 200
+                },
+                {
+                  "color": "blue",
+                  "index": 5,
+                  "value": 300
+                }
+              ],
+              "values": false
+            },
+            "orientation": "auto",
+            "showThresholdLabels": false,
+            "showThresholdMarkers": true
+          },
+          "pluginVersion": "6.2.4",
+          "targets": [
+            {
+              "format": "table",
+              "group": [],
+              "metricColumn": "none",
+              "rawQuery": true,
+              "rawSql": "select numbersrescued from totalrescued;",
+              "refId": "A",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "numbersrescued"
+                    ],
+                    "type": "column"
+                  }
+                ]
+              ],
+              "table": "numbersrescued",
+              "timeColumn": "totalrescued",
+              "timeColumnType": "int4",
+              "where": [
+                {
+                  "name": "$__unixEpochFilter",
+                  "params": [],
+                  "type": "macro"
+                }
+              ]
             }
-          }
+          ],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Total Rescued ",
+          "type": "gauge"
+        },
+        {
+          "datasource": "DS_DW_VDB",
+          "gridPos": {
+            "h": 8,
+            "w": 8,
+            "x": 9,
+            "y": 2
+          },
+          "id": 5,
+          "links": [],
+          "options": {
+            "displayMode": "lcd",
+            "fieldOptions": {
+              "calcs": [
+                "mean"
+              ],
+              "defaults": {
+                "max": 100,
+                "min": 0
+              },
+              "mappings": [],
+              "override": {},
+              "thresholds": [
+                {
+                  "color": "green",
+                  "index": 0,
+                  "value": null
+                },
+                {
+                  "color": "red",
+                  "index": 1,
+                  "value": 80
+                }
+              ],
+              "values": false
+            },
+            "orientation": "horizontal"
+          },
+          "pluginVersion": "6.2.4",
+          "targets": [
+            {
+              "format": "time_series",
+              "group": [],
+              "metricColumn": "none",
+              "rawQuery": true,
+              "rawSql": "select times as \"time\", totalrescued, responder from topresponders;\n",
+              "refId": "A",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "totalrescued"
+                    ],
+                    "type": "column"
+                  }
+                ]
+              ],
+              "table": "topresponders",
+              "timeColumn": "totalrescued",
+              "timeColumnType": "int4",
+              "where": [
+                {
+                  "name": "$__unixEpochFilter",
+                  "params": [],
+                  "type": "macro"
+                }
+              ]
+            }
+          ],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Top Responders",
+          "type": "bargauge"
+        },
+        {
+          "content": "\n\n\n\n\n",
+          "datasource": "DS_DW_VDB",
+          "gridPos": {
+            "h": 1,
+            "w": 17,
+            "x": 0,
+            "y": 10
+          },
+          "id": 3,
+          "links": [],
+          "mode": "markdown",
+          "options": {},
+          "pluginVersion": "6.2.4",
+          "targets": [
+            {
+              "format": "table",
+              "group": [],
+              "metricColumn": "none",
+              "rawQuery": true,
+              "rawSql": "select responder, responseVelocityKmPerHr, incidentId, processInstanceId from fastesttravelvelocities;",
+              "refId": "A",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "numberrescued"
+                    ],
+                    "type": "column"
+                  }
+                ]
+              ],
+              "table": "fastesttravelvelocities",
+              "timeColumn": "numberrescued",
+              "timeColumnType": "int4",
+              "where": [
+                {
+                  "name": "$__unixEpochFilter",
+                  "params": [],
+                  "type": "macro"
+                }
+              ]
+            }
+          ],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "",
+          "type": "text"
+        },
+        {
+          "columns": [],
+          "datasource": "DS_DW_VDB",
+          "fontSize": "100%",
+          "gridPos": {
+            "h": 8,
+            "w": 17,
+            "x": 0,
+            "y": 11
+          },
+          "id": 6,
+          "links": [],
+          "options": {},
+          "pageSize": null,
+          "pluginVersion": "6.2.4",
+          "scroll": true,
+          "showHeader": true,
+          "sort": {
+            "col": 0,
+            "desc": true
+          },
+          "styles": [
+            {
+              "alias": "Time",
+              "dateFormat": "YYYY-MM-DD HH:mm:ss",
+              "pattern": "Time",
+              "type": "date"
+            },
+            {
+              "alias": "",
+              "colorMode": null,
+              "colors": [
+                "rgba(245, 54, 54, 0.9)",
+                "rgba(237, 129, 40, 0.89)",
+                "rgba(50, 172, 45, 0.97)"
+              ],
+              "decimals": 2,
+              "pattern": "/.*/",
+              "thresholds": [],
+              "type": "number",
+              "unit": "short"
+            }
+          ],
+          "targets": [
+            {
+              "format": "table",
+              "group": [],
+              "metricColumn": "none",
+              "rawQuery": true,
+              "rawSql": "select responder, responseVelocityKmPerHr, incidentId, processInstanceId from fastesttravelvelocities;",
+              "refId": "A",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "numberrescued"
+                    ],
+                    "type": "column"
+                  }
+                ]
+              ],
+              "table": "fastesttravelvelocities",
+              "timeColumn": "numberrescued",
+              "timeColumnType": "int4",
+              "where": [
+                {
+                  "name": "$__unixEpochFilter",
+                  "params": [],
+                  "type": "macro"
+                }
+              ]
+            }
+          ],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Fastest Travel Velocities",
+          "transform": "table",
+          "type": "table"
         }
       ],
-      "type": "table"
+      "refresh": false,
+      "schemaVersion": 18,
+      "style": "dark",
+      "tags": [],
+      "templating": {
+        "list": []
+      },
+      "time": {
+        "from": "now-6h",
+        "to": "now"
+      },
+      "timepicker": {
+        "refresh_intervals": [
+          "5s",
+          "10s",
+          "30s",
+          "1m",
+          "5m",
+          "15m",
+          "30m",
+          "1h",
+          "2h",
+          "1d"
+        ],
+        "time_options": [
+          "5m",
+          "15m",
+          "1h",
+          "6h",
+          "12h",
+          "24h",
+          "2d",
+          "7d",
+          "30d"
+        ]
+      },
+      "timezone": "",
+      "title": "Mission Commander VDB KPIs",
+      "uid": "Z7oe2ulZt",
+      "version": 15
     }
-  ],
-  "refresh": "10s",
-  "schemaVersion": 26,
-  "style": "dark",
-  "tags": [],
-  "templating": {
-    "list": []
-  },
-  "time": {
-    "from": "now-6h",
-    "to": "now"
-  },
-  "timepicker": {
-    "refresh_intervals": [
-      "10s",
-      "30s",
-      "1m",
-      "5m",
-      "15m",
-      "30m",
-      "1h",
-      "2h",
-      "1d"
-    ],
-    "time_options": [
-      "5m",
-      "15m",
-      "1h",
-      "6h",
-      "12h",
-      "24h",
-      "2d",
-      "7d",
-      "30d"
-    ]
-  },
-  "timezone": "",
-  "title": "Mission Commander VDB KPIs",
-  "uid": "Z7oe2ulZz",
-  "version": 29
-   }
-    
   name: mission-commander-vdb-kpis.json
