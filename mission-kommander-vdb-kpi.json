@@ -255,7 +255,7 @@
               "group": [],
               "metricColumn": "none",
               "rawQuery": true,
-              "rawSql": "select now() as time1, sum(numberrescued) as sum, responderfullname from mission group by responderfullname order by sum desc limit 5\n",
+              "rawSql": "select now() as "time", sum(numberrescued) as sum, responderfullname from mission group by responderfullname order by sum desc limit 5\n",
               "refId": "A",
               "select": [
                 [
