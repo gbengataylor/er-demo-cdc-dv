@@ -418,6 +418,21 @@ spec:
           "timeShift": null,
           "title": "Fastest Travel Velocities",
           "transform": "table",
+          "transformations": [
+          {
+            "id": "organize",
+            "options": {
+            "excludeByName": {},
+            "indexByName": {},
+            "renameByName": {
+              "incidentId": "Incident ID",
+              "processInstanceId": "Process Instance ID",
+              "responder": "Responder",
+              "responseVelocityKmPerHr": "Response Velocity Km/Hr"
+              }
+            }
+           }
+          ],
           "type": "table"
         }
       ],
