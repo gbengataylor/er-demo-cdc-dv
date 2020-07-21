@@ -19,7 +19,7 @@
   "links": [],
   "panels": [
     {
-      "content": "\n# Mission Commander KPIs\n\n\n\n\n",
+      "content": "\n# Mission Commander VDB KPIs\n\n\n\n\n",
       "datasource": "DS_DW_VDB",
       "fieldConfig": {
         "defaults": {
@@ -28,8 +28,8 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 4,
-        "w": 18,
+        "h": 2,
+        "w": 17,
         "x": 0,
         "y": 0
       },
@@ -37,7 +37,7 @@
       "links": [],
       "mode": "markdown",
       "options": {
-        "content": "\n# Mission Commander KPIs\n\n\n\n\n",
+        "content": "\n# Mission Commander VDB KPIs\n\n\n\n\n",
         "mode": "markdown"
       },
       "pluginVersion": "7.1.0",
@@ -129,7 +129,7 @@
         "h": 8,
         "w": 8,
         "x": 0,
-        "y": 4
+        "y": 2
       },
       "id": 4,
       "links": [],
@@ -185,78 +185,76 @@
       "datasource": "DS_DW_VDB",
       "fieldConfig": {
         "defaults": {
-          "custom": {
-            "align": null
+          "color": {
+            "mode": "thresholds"
           },
+          "custom": {},
           "mappings": [],
+          "max": 100,
+          "min": 0,
           "thresholds": {
             "mode": "absolute",
             "steps": [
               {
                 "color": "green",
+                "index": 0,
                 "value": null
               },
               {
                 "color": "red",
+                "index": 1,
                 "value": 80
               }
             ]
           }
         },
-        "overrides": [
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "totalrescued"
-            },
-            "properties": [
-              {
-                "id": "custom.width",
-                "value": 132
-              }
-            ]
-          }
-        ]
+        "overrides": []
       },
       "gridPos": {
         "h": 8,
         "w": 9,
         "x": 8,
-        "y": 4
+        "y": 2
       },
-      "id": 8,
+      "id": 9,
+      "links": [],
       "options": {
-        "showHeader": true,
-        "sortBy": [
-          {
-            "desc": true,
-            "displayName": "Total Rescued"
-          }
-        ]
+        "displayMode": "lcd",
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "mean"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showUnfilled": true
       },
       "pluginVersion": "7.1.0",
       "targets": [
         {
-          "format": "table",
+          "format": "time_series",
           "group": [],
           "metricColumn": "none",
           "rawQuery": true,
-          "rawSql": "select   responder, totalrescued  from topresponders;",
+          "rawSql": "select times as \"time\", totalrescued, responder from topresponders;\n",
           "refId": "A",
           "select": [
             [
               {
                 "params": [
-                  "value"
+                  "totalrescued"
                 ],
                 "type": "column"
               }
             ]
           ],
-          "timeColumn": "time",
+          "table": "topresponders",
+          "timeColumn": "totalrescued",
+          "timeColumnType": "int4",
           "where": [
             {
-              "name": "$__timeFilter",
+              "name": "$__unixEpochFilter",
               "params": [],
               "type": "macro"
             }
@@ -265,21 +263,8 @@
       ],
       "timeFrom": null,
       "timeShift": null,
-      "title": "Top Responders",
-      "transformations": [
-        {
-          "id": "organize",
-          "options": {
-            "excludeByName": {},
-            "indexByName": {},
-            "renameByName": {
-              "responder": "Responder",
-              "totalrescued": "Total Rescued"
-            }
-          }
-        }
-      ],
-      "type": "table"
+      "title": "Top Responders (New)",
+      "type": "bargauge"
     },
     {
       "content": "\n\n\n\n\n",
@@ -294,7 +279,7 @@
         "h": 1,
         "w": 17,
         "x": 0,
-        "y": 12
+        "y": 10
       },
       "id": 3,
       "links": [],
@@ -353,7 +338,7 @@
         "h": 8,
         "w": 17,
         "x": 0,
-        "y": 13
+        "y": 11
       },
       "id": 6,
       "links": [],
@@ -444,88 +429,73 @@
       "datasource": "DS_DW_VDB",
       "fieldConfig": {
         "defaults": {
-          "color": {
-            "mode": "thresholds"
-          },
           "custom": {
             "align": null
           },
-          "mappings": [
-            {
-              "from": "",
-              "id": 0,
-              "text": "",
-              "to": "",
-              "type": 2,
-              "value": ""
-            }
-          ],
-          "max": 100,
-          "min": 0,
+          "mappings": [],
           "thresholds": {
             "mode": "absolute",
             "steps": [
               {
                 "color": "green",
-                "index": 0,
                 "value": null
               },
               {
                 "color": "red",
-                "index": 1,
                 "value": 80
               }
             ]
           }
         },
-        "overrides": []
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "totalrescued"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 132
+              }
+            ]
+          }
+        ]
       },
       "gridPos": {
         "h": 8,
-        "w": 8,
+        "w": 9,
         "x": 0,
-        "y": 21
+        "y": 19
       },
-      "id": 9,
-      "links": [],
+      "id": 8,
       "options": {
-        "displayMode": "lcd",
-        "orientation": "horizontal",
-        "reduceOptions": {
-          "calcs": [
-            "mean"
-          ],
-          "fields": "/^SUM$/",
-          "values": true
-        },
-        "showUnfilled": true
+        "showHeader": true,
+        "sortBy": []
       },
       "pluginVersion": "7.1.0",
-      "repeat": null,
       "targets": [
         {
           "format": "table",
           "group": [],
           "metricColumn": "none",
           "rawQuery": true,
-          "rawSql": "select responder, sum(totalrescued)  from topresponders group by responder;\n",
+          "rawSql": "select   responder, totalrescued  from topresponders;",
           "refId": "A",
           "select": [
             [
               {
                 "params": [
-                  "totalrescued"
+                  "value"
                 ],
                 "type": "column"
               }
             ]
           ],
-          "table": "topresponders",
-          "timeColumn": "totalrescued",
-          "timeColumnType": "int4",
+          "timeColumn": "time",
           "where": [
             {
-              "name": "$__unixEpochFilter",
+              "name": "$__timeFilter",
               "params": [],
               "type": "macro"
             }
@@ -534,93 +504,21 @@
       ],
       "timeFrom": null,
       "timeShift": null,
-      "title": "Top Responders (New)",
-      "type": "bargauge"
-    },
-    {
-      "datasource": "DS_DW_VDB",
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "thresholds"
-          },
-          "custom": {},
-          "mappings": [],
-          "max": 100,
-          "min": 0,
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "index": 0,
-                "value": null
-              },
-              {
-                "color": "red",
-                "index": 1,
-                "value": 80
-              }
-            ]
-          }
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 8,
-        "w": 8,
-        "x": 8,
-        "y": 21
-      },
-      "id": 5,
-      "links": [],
-      "options": {
-        "displayMode": "lcd",
-        "orientation": "horizontal",
-        "reduceOptions": {
-          "calcs": [
-            "mean"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "showUnfilled": true
-      },
-      "pluginVersion": "7.1.0",
-      "targets": [
+      "title": "Top Responders",
+      "transformations": [
         {
-          "format": "time_series",
-          "group": [],
-          "metricColumn": "none",
-          "rawQuery": true,
-          "rawSql": "select CURTIME() AS TIME1, sum(numberrescued) as sum, responderfullname from mission group by responderfullname order by sum desc limit 5\n",
-          "refId": "A",
-          "select": [
-            [
-              {
-                "params": [
-                  "numberrescued"
-                ],
-                "type": "column"
-              }
-            ]
-          ],
-          "table": "mission",
-          "timeColumn": "numberrescued",
-          "timeColumnType": "int4",
-          "where": [
-            {
-              "name": "$__unixEpochFilter",
-              "params": [],
-              "type": "macro"
+          "id": "organize",
+          "options": {
+            "excludeByName": {},
+            "indexByName": {},
+            "renameByName": {
+              "responder": "Responder",
+              "totalrescued": "Total Rescued"
             }
-          ]
+          }
         }
       ],
-      "timeFrom": null,
-      "timeShift": null,
-      "title": "Top Responders (old)",
-      "type": "bargauge"
+      "type": "table"
     }
   ],
   "refresh": "10s",
@@ -661,5 +559,5 @@
   "timezone": "",
   "title": "Mission Commander VDB KPIs",
   "uid": "Z7oe2ulZz",
-  "version": 27
+  "version": 29
 }
