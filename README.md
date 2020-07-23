@@ -2,7 +2,7 @@ prereq: install er-demo
 
 install the operator in datavirt project
 
-modify the er-vdb.yaml file. change user10-er-demo to userX-er-demo, where X is the user that has er-demo installed. There are three instances. For e.g
+modify the er-vdb.yaml file. substitue occurrences user10-er-demo with userX-er-demo, where X is the user that has er-demo installed. There are three instances. For e.g
 
 ```yaml
 
@@ -37,7 +37,8 @@ install the datawarehouse in the er demo namespace
 oc apply -f grafana_vdbdatasources.yaml -n $er-demo-namespace
 ```
 
-Modify 
+Modify grafana-mission-commander-kpi-vdb-dashboard.yaml  and modify the label of the CR 
+
 ```yaml
 apiVersion: integreatly.org/v1alpha1
 kind: GrafanaDashboard
