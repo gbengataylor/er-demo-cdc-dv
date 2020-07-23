@@ -1,6 +1,12 @@
 prereq: install er-demo
 
-install the operator in datavirt project
+Create a project called datavirt
+
+```sh
+oc new-project datavirt
+```
+
+install the Red Hat Data Virtualization operator in datavirt project
 
 modify the er-vdb.yaml file. substitue occurrences user10-er-demo with userX-er-demo, where X is the user that has er-demo installed. There are three instances. For e.g
 
