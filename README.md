@@ -6,7 +6,7 @@ Create a project called datavirt
 oc new-project datavirt
 ```
 
-install the Red Hat Data Virtualization operator in datavirt project
+install the Red Hat Data Virtualization operator in datavirt project via OperatorHub
 
 modify the er-vdb.yaml file. substitue occurrences user10-er-demo with userX-er-demo, where X is the user that has er-demo installed. There are three instances. For e.g
 
