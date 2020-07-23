@@ -10,11 +10,7 @@ apiVersion: teiid.io/v1alpha1
 kind: VirtualDatabase
 metadata:
   name: ervdb
-spec:
-  replicas: 1
-  expose:
-    - LoadBalancer
-  datasources:
+...
     - name: er
       type: postgresql
       properties:
@@ -23,7 +19,7 @@ spec:
         - name: password
           value: naps
         - name: jdbc-url
-          value: jdbc:postgresql://postgresql.user10-er-demo.svc.cluster.local:5432/emergency_response_demo
+          value: jdbc:postgresql://postgresql.user10-er-demo.svc.cluster.local:5432/emergency_response_demo <--update with appropriate namespace
           
 ````
 
