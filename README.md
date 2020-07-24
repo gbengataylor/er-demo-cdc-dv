@@ -3,6 +3,8 @@ prereq: install er-demo
 Create a project called datavirt
 
 ```sh
+#change namespace if needed
+erdemometricsnamespace=user1-er-metrics
 oc new-project datavirt
 ```
 
@@ -35,12 +37,16 @@ add the VDB
 # first time will take about 10 mins to create vdbbuilder (one time only)
 # actual vdb will build in about 3 mins
 oc apply -f er-vdb.yaml -n datavirt
+# if you don't clone the repo and user matches
+# oc appy -f https://raw.githubusercontent.com/gbengataylor/er-demo-cdc-dv/master/er-vdb.yaml -n datavirt
 ```
 
 install the datawarehouse in the er demo namespace
 
 ```sh
-oc apply -f grafana_vdbdatasources.yaml -n $er-demo-namespace
+oc apply -f grafana_vdbdatasources.yaml -n $erdemometricsnamespace
+# if you don't clone the repo and user matches
+#oc apply -f https://raw.githubusercontent.com/gbengataylor/er-demo-cdc-dv/master/grafana_vdbdatasources.yaml -n $erdemometricsnamespace
 ```
 
 Modify grafana-mission-commander-kpi-vdb-dashboard.yaml  and modify the label of the CR 
@@ -57,7 +63,9 @@ metadata:
 Add the dashboard
 
 ```sh
-oc apply -f grafana-mission-commander-kpi-vdb-dashboard.yaml -n $er-demo-namespace
+oc apply -f grafana-mission-commander-kpi-vdb-dashboard.yaml -n $erdemometricsnamespace
+# if you don't clone the repo and user matches
+#oc apply -f https://raw.githubusercontent.com/gbengataylor/er-demo-cdc-dv/master/grafana-mission-commander-kpi-vdb-dashboard.yaml -n $erdemometricsnamespace
 ```
 
 
