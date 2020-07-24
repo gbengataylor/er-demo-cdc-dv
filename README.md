@@ -38,7 +38,7 @@ add the VDB
 # actual vdb will build in about 3 mins
 oc apply -f er-vdb.yaml -n datavirt
 # if you don't clone the repo and user matches
-# oc appy -f https://raw.githubusercontent.com/gbengataylor/er-demo-cdc-dv/master/er-vdb.yaml -n datavirt
+# oc apply -f https://raw.githubusercontent.com/gbengataylor/er-demo-cdc-dv/master/er-vdb.yaml -n datavirt
 ```
 
 install the datawarehouse in the er demo namespace
