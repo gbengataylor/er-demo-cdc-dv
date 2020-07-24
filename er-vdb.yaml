@@ -15,7 +15,7 @@ spec:
         - name: password
           value: naps
         - name: jdbc-url
-          value: jdbc:postgresql://postgresql.user10-er-demo.svc.cluster.local:5432/emergency_response_demo
+          value: jdbc:postgresql://postgresql.user1-er-demo.svc.cluster.local:5432/emergency_response_demo
     - name: jbpm
       type: postgresql
       properties:
@@ -24,7 +24,7 @@ spec:
         - name: password
           value: rhpam
         - name: jdbc-url
-          value: jdbc:postgresql://process-service-postgresql.user10-er-demo.svc.cluster.local:5432/rhpam
+          value: jdbc:postgresql://process-service-postgresql.user1-er-demo.svc.cluster.local:5432/rhpam
     - name: dw
       type: postgresql
       properties:
@@ -33,7 +33,7 @@ spec:
         - name: password
           value: naps
         - name: jdbc-url
-          value: jdbc:postgresql://dw-postgresql.user10-er-demo.svc.cluster.local:5432/datawarehouse          
+          value: jdbc:postgresql://dw-postgresql.user1-er-demo.svc.cluster.local:5432/datawarehouse          
   build:
     source:
       ddl: |
