@@ -8,7 +8,7 @@ oc new-project datavirt
 
 install the Red Hat Data Virtualization operator in datavirt project via OperatorHub
 
-modify the er-vdb.yaml file. Substitue occurrences of 'user10-er-demo' with userX-er-demo, where X is the user that has er-demo installed. There are three occurences in the file related to the jdbc connection string. For e.g
+modify the er-vdb.yaml file. Substitue occurrences of 'user1-er-demo' with userX-er-demo, where X is the user that has er-demo installed. There are three occurences in the file related to the jdbc connection string. For e.g
 
 ```yaml
 
@@ -25,7 +25,7 @@ metadata:
         - name: password
           value: naps
         - name: jdbc-url
-          value: jdbc:postgresql://postgresql.user10-er-demo.svc.cluster.local:5432/emergency_response_demo <--update with appropriate namespace
+          value: jdbc:postgresql://postgresql.user1-er-demo.svc.cluster.local:5432/emergency_response_demo <--update with appropriate namespace
           
 ````
 
@@ -50,7 +50,7 @@ apiVersion: integreatly.org/v1alpha1
 kind: GrafanaDashboard
 metadata:
   labels:
-    monitoring-key: user10-application-monitoring <--- update with user
+    monitoring-key: user1-application-monitoring <--- update with user
   name: mission-commander-vdb-kpis
 ```
 
